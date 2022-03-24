@@ -3,21 +3,27 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const port = process.argv[2];
 
 const app = express();
 const blockchain = require("./routes/api/blockchain");
 const networkNode = require("./routes/api/networkNode");
 
 mongoose.Promise = global.Promise;
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => res.send("Root path of the backend"));
 
 const db = process.env.mongoURI;
-console.log(db);
+
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB Connected Succesfully"))
     .catch(err => console.log(err));
+
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 app.use("/api/blockchain", blockchain);
 app.use("/api/networknode", networkNode);
@@ -37,6 +43,5 @@ app.use((error, req, res, next) => {
     });
 });
 
-const port = process.env.PORT || 5200;
 
 app.listen(port, () => console.log("server is running on port: " + port));
