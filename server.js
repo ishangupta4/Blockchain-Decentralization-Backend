@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const app = express();
+const blockchain = require("./routes/api/blockchain");
+const networkNode = require("./routes/api/networkNode");
 
 mongoose.Promise = global.Promise;
 
@@ -17,6 +19,8 @@ mongoose
     .then(() => console.log("MongoDB Connected Succesfully"))
     .catch(err => console.log(err));
 
+app.use("/api/blockchain", blockchain);
+app.use("/api/networknode", networkNode);
 
 app.use((req, res, next) => {
     const error = new Error("Route not found");
