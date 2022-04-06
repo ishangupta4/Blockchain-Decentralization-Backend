@@ -10,7 +10,6 @@
         "node3": "nodemon --watch dev -e js server.js 5201 http://localhost:5203",
         "node4": "nodemon --watch dev -e js server.js 5201 http://localhost:5204",
         "node5": "nodemon --watch dev -e js server.js 5201 http://localhost:5205"
-
     },
     "repository": {
         "type": "git",
@@ -32,6 +31,7 @@
         "nodemon": "^2.0.15",
         "passport": "^0.5.2",
         "passport-jwt": "^4.0.0",
+        "request-promise": "^4.2.6",
         "sha256": "^0.2.0",
         "uuid": "^8.3.2"
     }

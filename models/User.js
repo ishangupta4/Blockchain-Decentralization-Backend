@@ -11,16 +11,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    chain: [{
-        organization: {
-            type: String,
-            required: true
-        },
-        blockchainCopy: {
-            type: Schema.Types.ObjectId,
-            ref: 'blockchain'
-        }
-    }]
+    blockchainCopy: {
+        type: Schema.Types.ObjectId,
+        ref: 'blockchain'
+    }
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

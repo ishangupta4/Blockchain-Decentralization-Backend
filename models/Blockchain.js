@@ -2,7 +2,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BlockchainSchema = new Schema({
-    Block: [{
+    pendingTransactions: [{
+        data: {
+            type: String
+        }
+    }],
+    currentNodeUrl: {
+        type: String
+    },
+    networkNodes: [{
+        node: {
+            type: String
+        },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+        }
+    }],
+    block: [{
         nonce: {
             type: Number,
             required: true
@@ -21,6 +38,10 @@ const BlockchainSchema = new Schema({
             type: String,
             required: true,
             default: " "
+        },
+        timestamp: {
+            type: Date,
+            default: Date.now()
         }
     }]
 });

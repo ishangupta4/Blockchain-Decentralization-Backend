@@ -6,7 +6,7 @@ const passport = require('passport');
 const port = process.argv[2];
 
 const app = express();
-const blockchain = require("./routes/api/blockchain");
+// const blockchain = require("./routes/api/blockchain");
 const networkNode = require("./routes/api/networkNode");
 
 mongoose.Promise = global.Promise;
@@ -25,7 +25,7 @@ mongoose
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-app.use("/api/blockchain", blockchain);
+// app.use("/api/blockchain", blockchain);
 app.use("/api/networknode", networkNode);
 
 app.use((req, res, next) => {
